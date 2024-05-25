@@ -2,11 +2,13 @@
 
 import Constants from 'expo-constants';
 
+require('dotenv').config();
+
 const LATITUDE = 33.643162;
 const LONGITUDE = -117.851143;
 const RADIUS = 5000;
 
-const API_KEY = "AIzaSyDTM3uaifpnLbeeZcAOyn8A75VIlschIu4";
+const API_KEY = process.env.API_KEY;
 
 // const API_KEY = process.env.API_KEY
 
