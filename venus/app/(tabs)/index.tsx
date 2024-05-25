@@ -16,12 +16,16 @@ export default function HomeScreen() {
           style={styles.reactLogo}
         />
       }>
+   
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        
+        <ThemedText type="title">hi!</ThemedText>
         <HelloWave />
+        
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+        <Button title={'hi'} onPress={getGym}> </Button> 
         <ThemedText>
           Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
           Press{' '}
