@@ -8,14 +8,15 @@ import { ThemedView } from '@/components/ThemedView';
 import { getGym } from './api';
 import Plant from './Plant';
 
-import addGym from './addGym';
+import routes from '../../backend/routes';
+
 
 export default function HomeScreen() {
   const handleAddGym = () => {
     const name = 'Fitness Center';
     const location = '123 Main St';
     const capacity = 100;
-    addGym(name, location, capacity);
+    routes.addGym("112312", name, location, capacity, 5);
   };
 
   return (
