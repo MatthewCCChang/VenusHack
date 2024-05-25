@@ -8,7 +8,7 @@ const LATITUDE = 33.643162;
 const LONGITUDE = -117.851143;
 const RADIUS = 5000;
 
-const API_KEY = process.env.EXPO_PUBLIC_API_URL;
+const API_KEY = Constants.expoConfig?.extra;
 
 // const API_KEY = process.env.API_KEY
 
@@ -32,10 +32,10 @@ const getGym = async () => {
         const fetching = await fetch(url, {
             method: 'POST',
             headers: {
-                'X-Goog-FieldMask': 'places.displayName',
-                'Content-Type': 'application/json',
-                'X-Goog-Api-Key': API_KEY,
-            } as HeadersInit,
+              'X-Goog-FieldMask': 'places.displayName',
+              'Content-Type': 'application/json',
+              'X-Goog-Api-Key': API_KEY,
+            } as unknown as HeadersInit,
             body: JSON.stringify(params),
             
         }   
