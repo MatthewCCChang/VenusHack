@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Platform, Button } from 'react-native';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -7,19 +7,13 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { getGym } from './api';
 import Plant from './Plant';
-import Login from './login';
-
+import ProfileSetUp from '../../components/onboarding/ProfileSetUp'
 
 import routes from '../../backend/routes';
 
 
 export default function HomeScreen() {
-  const handleAddGym = () => {
-    const name = 'Fitness Center';
-    const location = '123 Main St';
-    const capacity = 100;
-    routes.addGym("112312", name, location, capacity, 5);
-  };
+  const [user, setUser] = useState('');
 
   return (
 
@@ -35,12 +29,13 @@ export default function HomeScreen() {
      <Login/>
       <ThemedView style={styles.titleContainer}>
         
-        <ThemedText type="title">hi!</ThemedText>
-        <HelloWave />
+    {
+    <ProfileSetUp />
+      // <Plant />
+    //   <ThemedView style={styles.titleContainer}>
         
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+    //     <ThemedText type="title">hi!</ThemedText>
+    //     <HelloWave />
         
         {/* <Button title={'h2'} onPress={getGym}> </Button> 
         <Button title={'hi2'} onPress={handleAddGym}> </Button> */}
