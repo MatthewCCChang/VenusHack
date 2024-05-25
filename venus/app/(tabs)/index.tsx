@@ -7,6 +7,8 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { getGym } from './api';
 import Plant from './Plant';
+import Login from './login';
+
 
 import routes from '../../backend/routes';
 
@@ -20,6 +22,7 @@ export default function HomeScreen() {
   };
 
   return (
+
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
@@ -29,6 +32,7 @@ export default function HomeScreen() {
         />
       }>
      <Plant />
+     <Login/>
       <ThemedView style={styles.titleContainer}>
         
         <ThemedText type="title">hi!</ThemedText>
@@ -38,8 +42,8 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         
-        <Button title={'h2'} onPress={getGym}> </Button> 
-        <Button title={'hi2'} onPress={handleAddGym}> </Button>
+        {/* <Button title={'h2'} onPress={getGym}> </Button> 
+        <Button title={'hi2'} onPress={handleAddGym}> </Button> */}
         <ThemedText>
           Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
           Press{' '}
