@@ -39,8 +39,8 @@ const getGym = async () => {
         }   
         );
         const gyms = await fetching.json();
-        console.log(gyms['results'].length);
-        // console.log(gyms);
+        console.log(gyms['results'][0]);
+        //console.log(gyms);
         return gyms;
     }catch(err){
         console.log(err)
