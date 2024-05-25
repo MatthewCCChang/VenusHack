@@ -8,7 +8,7 @@ const LATITUDE = 33.643162;
 const LONGITUDE = -117.851143;
 const RADIUS = 5000;
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.EXPO_PUBLIC_API_URL;
 
 // const API_KEY = process.env.API_KEY
 
