@@ -16,19 +16,19 @@ const addGym = async (id, name, location, capacity, rating) => {
   }
 };
 
-const addPerson = async (firstName, lastName, age, gender, gymTime, howOften, phone, instagram, interests) => {
+const addPerson = async (firstName, lastName, username, email, age, gender, gymTime, phone, interests, fitnessGoals) => {
   try {
     const personData = {
       firstName: firstName.toString(),
       lastName: lastName.toString(),
+      username: username.toString(),
+      email: email.toString(),
       age: Number(age),
       gender: gender.toString(),
       gymTime: gymTime.toString(),
-      howOften: howOften.toString(),
       phone: phone.toString(),
-      instagram: instagram.toString(),
       interests: Array.isArray(interests) ? interests.map(interest => interest.toString()) : [interests.toString()],
-      createdAt: serverTimestamp(),
+      fitnessGoals: Array.isArray(fitnessGoals) ? fitnessGoals.map(goal => goal.toString()) : [fitnessGoals.toString()],
     };
 
     const docRef = await addDoc(collection(db, 'persons'), personData);
@@ -101,4 +101,4 @@ const getConnections = async (gymID) => {
   }
 };
 
-export default {addGym, addPerson, addConnection, getPerson, getConnections};
+export {addGym, addPerson, addConnection, getPerson, getConnections};
