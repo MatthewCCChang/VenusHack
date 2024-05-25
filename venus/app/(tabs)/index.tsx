@@ -1,12 +1,23 @@
 import { Image, StyleSheet, Platform, Button } from 'react-native';
+import { useEffect } from 'react';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { getGym } from './api';
+import Plant from './Plant';
+
+import addGym from './addGym';
 
 export default function HomeScreen() {
+  const handleAddGym = () => {
+    const name = 'Fitness Center';
+    const location = '123 Main St';
+    const capacity = 100;
+    addGym(name, location, capacity);
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -16,7 +27,7 @@ export default function HomeScreen() {
           style={styles.reactLogo}
         />
       }>
-   
+     <Plant />
       <ThemedView style={styles.titleContainer}>
         
         <ThemedText type="title">hi!</ThemedText>
@@ -25,7 +36,9 @@ export default function HomeScreen() {
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <Button title={'hi'} onPress={getGym}> </Button> 
+        
+        <Button title={'h2'} onPress={getGym}> </Button> 
+        <Button title={'hi2'} onPress={handleAddGym}> </Button>
         <ThemedText>
           Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
           Press{' '}
