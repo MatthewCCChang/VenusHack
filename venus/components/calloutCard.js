@@ -10,19 +10,7 @@ const Card = (gym, users) => {
   return (
     // <Callout tooltip={true}>
     //   {/*gym info then user cards */}
-    <View>
-      <ScrollView horizontal={true}>
-        {photos.map((photo, index) => {
-          <Image
-            source={{
-              uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=YOUR_API_KEY`,
-              key: { index },
-            }}
-          ></Image>;
-        })}
-      </ScrollView>
-      <userCard></userCard>
-    </View>
+    <View></View>
 
     // </Callout>
   );

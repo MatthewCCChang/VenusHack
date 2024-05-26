@@ -3,8 +3,7 @@ import { View, StyleSheet } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { getGym } from "@/app/(tabs)/api";
 import { addGym, getOneGym, getConnections } from "../backend/routes";
-import Card from "./calloutCard";
-
+import Card from "./userCard";
 const MapScreen = () => {
   const [gyms, setGyms] = useState([]);
   const [mapRegion, setMapRegion] = useState({
@@ -81,8 +80,18 @@ const MapScreen = () => {
               onPress={() => handleMarkerPress(id)}
             >
               {selected === id && gym && users.length > 0 && (
-                <Callout>
-                  <Card gym={gym} users={users} />
+                <Callout tooltip={true}>
+                  <ScrollView horizontal={true}>
+                    {photos.map((photo, index) => {
+                      <Image
+                        source={{
+                          uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=YOUR_API_KEY`,
+                          key: { index },
+                        }}
+                      ></Image>;
+                    })}
+                  </ScrollView>
+                  <Card></Card>
                 </Callout>
               )}
             </Marker>

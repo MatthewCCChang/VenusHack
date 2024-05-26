@@ -1,3 +1,3 @@
-const userCard = () => {};
+const Card = () => {};
 
-export default userCard;
+export default Card;
