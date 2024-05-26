@@ -9,13 +9,13 @@ import {
   serverTimestamp,
 } from "../app/(tabs)/firebaseConfig";
 
-const addGym = async (id, name, location, capacity, rating) => {
+export const addGym = async (id, name, location, rating) => {
   try {
     const docRef = doc(collection(db, "gyms"), id);
     await setDoc(docRef, {
       name: name.toString(),
       location: location.toString(),
-      capacity: Number(capacity),
+      // capacity: Number(capacity),
       rating: Number(rating),
     });
     console.log("Gym added with ID: ", docRef.id);
@@ -24,17 +24,16 @@ const addGym = async (id, name, location, capacity, rating) => {
   }
 };
 
-const addPerson = async (
+export const addPerson = async (
   firstName,
   lastName,
-  username,
-  email,
   age,
   gender,
   gymTime,
+  howOften,
   phone,
-  interests,
-  fitnessGoals,
+  instagram,
+  interests
 ) => {
   try {
     const personData = {
@@ -46,12 +45,11 @@ const addPerson = async (
       gender: gender.toString(),
       gymTime: gymTime.toString(),
       phone: phone.toString(),
+      instagram: instagram.toString(),
       interests: Array.isArray(interests)
         ? interests.map((interest) => interest.toString())
         : [interests.toString()],
-      fitnessGoals: Array.isArray(fitnessGoals)
-        ? fitnessGoals.map((goal) => goal.toString())
-        : [fitnessGoals.toString()],
+      createdAt: serverTimestamp(),
     };
 
     const docRef = await addDoc(collection(db, "persons"), personData);
@@ -62,7 +60,7 @@ const addPerson = async (
   }
 };
 
-const addConnection = async (personID, gymID) => {
+export const addConnection = async (personID, gymID) => {
   try {
     const gymDocRef = doc(db, "connections", gymID);
 
@@ -74,33 +72,35 @@ const addConnection = async (personID, gymID) => {
   }
 };
 
-const getPerson = async (personID) => {
+export const getPerson = async (personID) => {
   try {
-    const personRef = doc("persons", personID);
+    const personRef = doc(db, "persons", personID);
     const info = await getDoc(personRef);
     console.log(info);
     if (info.exists()) {
-      return info.json();
+      return info.data();
     }
   } catch (err) {
     console.log(err.message);
   }
 };
 
-const getGym = async (gymID) => {
+export const getOneGym = async (gymID) => {
   try {
-    const gymRef = doc("gyms", gymID);
+    const gymRef = doc(db, "gyms", gymID);
     const info = await getDoc(gymRef);
-
+    console.log(info);
+    console.log("info above");
     if (info.exists()) {
-      return info.json();
+      return info.data();
     }
+    console.log("empty");
   } catch (err) {
     console.log(err.message);
   }
 };
 
-const getConnections = async (gymID) => {
+export const getConnections = async (gymID) => {
   try {
     const gymDocRef = doc(db, "connections", gymID);
     const gymDoc = await getDoc(gymDocRef);
@@ -110,7 +110,7 @@ const getConnections = async (gymID) => {
       const peopleIDs = gymData.people || [];
 
       const peopleDetailsPromises = peopleIDs.map((personID) =>
-        getPerson(personID),
+        getPerson(personID)
       );
       const peopleDetails = await Promise.all(peopleDetailsPromises);
 
@@ -125,4 +125,11 @@ const getConnections = async (gymID) => {
   }
 };
 
-export { addGym, addPerson, addConnection, getPerson, getConnections };
+// export default {
+//   addGym,
+//   getGym,
+//   addPerson,
+//   addConnection,
+//   getPerson,
+//   getConnections,
+// };
