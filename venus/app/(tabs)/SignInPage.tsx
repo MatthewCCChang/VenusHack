@@ -1,37 +1,50 @@
-import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
+import React, { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Animated } from "react-native";
 import '@tamagui/core/reset.css';
 import { SafeAreaView } from "react-native-safe-area-context";
 
-
 const SignInPage = ({ navigation }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ImageBackground
-        source={require('./background.png')}  // Ensure this path is correct relative to your file location
-        style={styles.background}
-        resizeMode="cover"
-      >
-        <View style={styles.overlay}>
-          
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.signupButton}>
-              <Text style={styles.signupButtonText}>Sign up</Text>
-            </TouchableOpacity>
+      <Animated.View style={{ ...styles.container, opacity: fadeAnim }}>
+        <ImageBackground
+          source={require('./background.png')}  // Ensure this path is correct relative to your file location
+          style={styles.background}
+          resizeMode="cover"
+        >
+          <View style={styles.overlay}>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.signupButton}>
+                <Text style={styles.signupButtonText}>Sign up</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('LoginPage')} style={styles.loginButton}>
+                <Text style={styles.loginButtonText}>Log in</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('LoginPage')} style={styles.loginButton}>
-              <Text style={styles.loginButtonText}>Log in</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </Animated.View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
+    flex: 1,
+  },
+  container: {
     flex: 1,
   },
   background: {

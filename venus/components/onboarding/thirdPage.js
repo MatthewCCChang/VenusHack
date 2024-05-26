@@ -2,13 +2,12 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 
 const ThirdPage = ({ profileData, handleChange, nextStep, prevStep }) => {
   const [showTextInput, setShowTextInput] = useState(false);
@@ -71,27 +70,29 @@ const ThirdPage = ({ profileData, handleChange, nextStep, prevStep }) => {
             Non-binary
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            selectedGender === "other" && styles.selectedOptionButton,
-          ]}
-          onPress={handleOtherOption}
-        >
-          <Text
+        {!showTextInput && (
+          <TouchableOpacity
             style={[
-              styles.optionText,
-              selectedGender === "other" && styles.selectedOptionText,
+              styles.optionButton,
+              selectedGender === "other" && styles.selectedOptionButton,
             ]}
+            onPress={handleOtherOption}
           >
-            Other
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                styles.optionText,
+                selectedGender === "other" && styles.selectedOptionText,
+              ]}
+            >
+              Other
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
       {showTextInput && (
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, styles.customTextInput]}
             placeholder="Enter your gender"
             value={customGender}
             onChangeText={setCustomGender}
@@ -102,11 +103,11 @@ const ThirdPage = ({ profileData, handleChange, nextStep, prevStep }) => {
         </View>
       )}
       <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={prevStep} style={styles.arrowButton}>
-        <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
+        <TouchableOpacity onPress={prevStep} style={styles.arrowButton}>
+          <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
         </TouchableOpacity>
         <TouchableOpacity onPress={nextStep} style={styles.arrowButton2}>
-        <Icon name="long-arrow-alt-right" style={styles.arrowButtonText2} />
+          <Icon name="long-arrow-alt-right" style={styles.arrowButtonText2} />
         </TouchableOpacity>
       </View>
     </View>
@@ -119,7 +120,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    
   },
   headerText: {
     fontSize: 24,
@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 10,
-
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
@@ -176,6 +175,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 10,
+  },
+  customTextInput: {
+    borderColor: "#3A15CE",
+    height: 52,
+    backgroundColor: "white", 
+    marginTop: -25
   },
   submitButton: {
     padding: 10,
@@ -214,7 +219,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "white",
     borderRadius: 10,
-    
     marginHorizontal: 10,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,

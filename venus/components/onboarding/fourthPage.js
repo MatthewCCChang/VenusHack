@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import WheelPicker from 'react-native-wheely';
 
 const FourthPage = ({ profileData, handleChange, nextStep, prevStep }) => {
   const [age, setAge] = useState("");
