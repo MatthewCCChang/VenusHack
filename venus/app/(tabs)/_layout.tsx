@@ -1,47 +1,29 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import SignInPage from './login'; // Ensure the correct import path
+import ProfileSetUp from '../../components/onboarding/ProfileSetUp'; // Ensure the correct import path
+import Start from './Start'; // Ensure the correct import path
+import Home from './Home'; // Ensure the correct import path
+import FirstPage from '../../components/onboarding/fifthPage'
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const Stack = createStackNavigator();
 
+export default function AppNavigator() {
   return (
-    <Tabs
+    <Stack.Navigator
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen 
-      name="login"
-        options={{
-          title: 'Login',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}>
+        headerShown: false, // This ensures no headers are shown
+        animationEnabled: false, // Disable transitions between screens
+      }}
+      initialRouteName="Start"
+    >
+      <Stack.Screen name="Start" component={Start} />
+      <Stack.Screen name="SignIn" component={SignInPage} />
+      <Stack.Screen name="SignUp" component={ProfileSetUp} />
+      <Stack.Screen name="FirstPage" component={FirstPage} />
+      <Stack.Screen name="Home" component={Home} />
 
-      </Tabs.Screen>
-    </Tabs>
+    </Stack.Navigator>
   );
 }

@@ -1,7 +1,12 @@
-import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-import Svg, { Circle, Rect, Path } from 'react-native-svg';
-import Animated, { Easing, useSharedValue, useAnimatedProps, withTiming } from 'react-native-reanimated';
+import React from "react";
+import { View, Button, StyleSheet } from "react-native";
+import Svg, { Circle, Rect, Path } from "react-native-svg";
+import Animated, {
+  Easing,
+  useSharedValue,
+  useAnimatedProps,
+  withTiming,
+} from "react-native-reanimated";
 
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -13,7 +18,14 @@ const Plant = () => {
 
   const animatedProps = useAnimatedProps(() => {
     return {
-      transform: [{ scale: withTiming(growth.value, { duration: 500, easing: Easing.bounce }) }],
+      transform: [
+        {
+          scale: withTiming(growth.value, {
+            duration: 500,
+            easing: Easing.bounce,
+          }),
+        },
+      ],
       opacity: withTiming(watered.value ? 1 : 0.8, { duration: 500 }),
     };
   });
@@ -24,7 +36,7 @@ const Plant = () => {
 
   const animateWatering = () => {
     watered.value = true;
-    setTimeout(() => watered.value = false, 2000); // Simulate water effect duration
+    setTimeout(() => (watered.value = false), 2000); // Simulate water effect duration
   };
 
   return (
@@ -68,8 +80,8 @@ const Plant = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

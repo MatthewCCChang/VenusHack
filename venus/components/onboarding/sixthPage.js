@@ -1,25 +1,32 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const SixthPage = ({ profileData, handleChange, nextStep, prevStep}) => {
-  const [interests, setInterests] = useState([]);
-  
+const SixthPage = ({ profileData, handleChange, nextStep, prevStep }) => {
+  const [interests, setInterests] = useState(profileData.interests || []);
+
   const toggleInterest = (interest) => {
-    setInterests(prevState =>
+    setInterests((prevState) =>
       prevState.includes(interest)
-        ? prevState.filter(item => item !== interest)
+        ? prevState.filter((item) => item !== interest)
         : [...prevState, interest]
     );
   };
 
   const handleSubmit = () => {
-    handleChange('interests', interests);
+    handleChange("interests", interests);
     nextStep();
   };
 
   const interestOptions = [
-    'Running', , 'Yoga', 'Swimming', 'Biking', 
-    'Martial Arts', 'Calisthenics', 'Weight Lifting', 'Rock Climbing'
+    "Running",
+    "Yoga",
+    "Swimming",
+    "Biking",
+    "Martial Arts",
+    "Calisthenics",
+    "Weight Lifting",
+    "Rock Climbing",
   ];
 
   return (
@@ -31,20 +38,27 @@ const SixthPage = ({ profileData, handleChange, nextStep, prevStep}) => {
             key={index}
             style={[
               styles.optionButton,
-              interests.includes(interest) && styles.selectedOptionButton
+              interests.includes(interest) && styles.selectedOptionButton,
             ]}
             onPress={() => toggleInterest(interest)}
           >
-            <Text style={styles.optionText}>{interest}</Text>
+            <Text
+              style={[
+                styles.optionText,
+                interests.includes(interest) && styles.selectedOptionText,
+              ]}
+            >
+              {interest}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={prevStep} style={styles.button}>
-          <Text style={styles.buttonText}>←</Text>
+      <TouchableOpacity onPress={prevStep} style={styles.arrowButton}>
+        <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-          <Text style={styles.buttonText}>→</Text>
+        <TouchableOpacity onPress={handleSubmit} style={styles.arrowButton}>
+        <Icon name="long-arrow-alt-right" style={styles.arrowButtonText} />
         </TouchableOpacity>
       </View>
     </View>
@@ -54,56 +68,75 @@ const SixthPage = ({ profileData, handleChange, nextStep, prevStep}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: '35%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
   headerText: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 40,
+    width: "85%",
   },
   optionsContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    width: "90%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     marginBottom: 40,
   },
   optionButton: {
-    width: '48%',
+    width: "48%",
     padding: 20,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginVertical: 10,
   },
   selectedOptionButton: {
-    backgroundColor: '#FFC0CB',
+    backgroundColor: "#FFC0CB",
   },
   optionText: {
     fontSize: 18,
-    textAlign: 'center', // Ensure text is centered
+    textAlign: "center", // Ensure text is centered
+  },
+  selectedOptionText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '50%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "50%",
   },
   button: {
     width: 50,
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#e0e0e0',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#e0e0e0",
     borderRadius: 30,
     marginHorizontal: 10,
   },
   buttonText: {
     fontSize: 20,
+  },
+  arrowButton: {
+    width: 75,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderColor: "#A9A9A9",
+    borderRadius: 5,
+    marginHorizontal: 10,
+  },
+  arrowButtonText: {
+    fontSize: 20,
+    color: "#A9A9A9",
   },
 });
 

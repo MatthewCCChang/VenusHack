@@ -1,86 +1,97 @@
-
-import { View, Text, StyleSheet, Image, Button, TouchableOpacity} from "react-native";
-import '@tamagui/core/reset.css'
+import React from 'react';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
+import '@tamagui/core/reset.css';
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const signInPage = () => {
-
-    return(
-        <SafeAreaView>
-            <View style={styles.imgcontainer}>
-            <Image source={require("../../assets/images/Screenshot 2024-05-25 131346.png")}
-            style={styles.img} />
-        </View><View style={styles.container}>
-                <Text style={styles.titleText}>Hello</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
-                    {/* <Button title={"Login"} color={'red'}></Button> */}
-                </TouchableOpacity>
-                
-                
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Signup</Text>
-                </TouchableOpacity>
-            </View>
-            
-            
-        </SafeAreaView>
-    )
+const SignInPage = ({ navigation }) => {
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <ImageBackground
+        source={require('./background.png')}  // Ensure this path is correct relative to your file location
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <View style={styles.overlay}>
+          
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.signupButton}>
+              <Text style={styles.signupButtonText}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('LogIn')} style={styles.loginButton}>
+              <Text style={styles.loginButtonText}>Log in</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    baseText: {
-      fontFamily: 'Cochin',
-    },
-    titleText: {
-      fontSize: 50,
-      fontWeight: 'bold',
-    },
-    container: {
-        flex: 1,
-        // justifyContent: 'center',
-        alignItems: 'center',
-        // marginTop: '10%',
-        backgroundColor: 'green',
-    },
-    imgcontainer: {
-        alignItems: 'center',
-        marginTop: '10%',
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        height: '50%',
-        marginBottom: '5%',
-        width: '100%'
-        
-    },
-    img: {
-        width: '90%',
-        height: '70%',
-        // backgroundColor: 'blue',
-    },
-    button: {
-        alignItems: 'center',
-        // marginTop: '5%',
-        backgroundColor: 'blue',
-        width: '80%',
-        padding: 10,
-        borderRadius: 20.0,
-        justifyContent: 'center',
-        // marginBottom: '5%',
-        // flexGrow: 0.8,
-        // flexDirection: 'row',
-        // alignContent: 'center',
-    },
-    buttonText: {
-        fontSize:20,
-    },
-    buttonContainer: {
-        alignItems: 'center',
-        margin: '5%',
-    }
-  });
-export default signInPage;
+  safeArea: {
+    flex: 1,
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '60%',
+    backgroundColor: "#FFFFFF"
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 100,  // Adjust as needed
+  },
+  titleText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: '#800080',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subtitleText: {
+    fontSize: 20,
+    color: '#000',
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  buttonContainer: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  signupButton: {
+    marginTop: '30%',
+    backgroundColor: '#4B0082',
+    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    width: '80%',
+    alignItems: 'center',
+  },
+  signupButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  loginButton: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: '#4B0082',
+    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    width: '80%',
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#4B0082',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
+
+export default SignInPage;
