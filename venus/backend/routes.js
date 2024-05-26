@@ -15,21 +15,21 @@ export const addGym = async (id, name, location, rating) => {
   try {
     const docRef = doc(collection(db, "gyms"), id);
     const docs = await getDoc(docRef);
-    if (docs.exists()) {
-      throw error("Gym already exists");
+    if (!docs.exists()) {
+      await setDoc(docRef, {
+        name: name.toString(),
+        location: location.toString(),
+        // capacity: Number(capacity),
+        rating: Number(rating),
+      });
+      const docRefCon = doc(collection(db, "connections"), id);
+      await setDoc(docRefCon, {
+        users: [],
+      });
+      console.log("Gym added with ID: ", docRef.id);
+      console.log("Connection added successfully");
     }
-    await setDoc(docRef, {
-      name: name.toString(),
-      location: location.toString(),
-      // capacity: Number(capacity),
-      rating: Number(rating),
-    });
-    const docRefCon = doc(collection(db, "connections"), id);
-    await setDoc(docRefCon, {
-      users: [],
-    });
-    console.log("Gym added with ID: ", docRef.id);
-    console.log("Connection added successfully");
+    
   } catch (error) {
     console.error("Error adding gym: ", error);
   }
