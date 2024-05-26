@@ -17,8 +17,8 @@ export default function HomeScreen() {
   const handleAddGym = () => {
     const name = 'Fitness Center';
     const location = '123 Main St';
-    const capacity = 100;
-    routes.addGym("112312", name, location, capacity, 5);
+    // const capacity = 100;
+    routes.addGym("112312", name, location, 5);
   };
 
   return (

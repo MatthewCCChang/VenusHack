@@ -20,7 +20,7 @@ const params = {
         "center": {
           "latitude": LATITUDE,
           "longitude": LONGITUDE},
-        "radius": 2000.0
+        "radius": 5000.0
       }
     }
   }
@@ -41,7 +41,7 @@ const getGym = async () => {
         const gyms = await fetching.json();
         console.log(gyms['results'][0]);
         //console.log(gyms);
-        return gyms;
+        return gyms['results'];
     }catch(err){
         console.log(err)
     }
