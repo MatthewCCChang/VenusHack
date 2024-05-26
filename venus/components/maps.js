@@ -76,7 +76,7 @@ const MapScreen = () => {
               pinColor="red"
               zIndex={1}
               description={open} //descriptions so like view gym or smth
-              onPress={(e) => {
+              onCalloutPress={(e) => {
                 console.log(e.nativeEvent);
                 handlemarkerPress(id);
                 console.log("done");

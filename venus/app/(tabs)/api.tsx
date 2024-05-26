@@ -6,7 +6,7 @@ const LATITUDE = 33.643162;
 const LONGITUDE = -117.851143;
 const RADIUS = 5000;
 
-const API_KEY = "AIzaSyDTM3uaifpnLbeeZcAOyn8A75VIlschIu4";
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
 // const API_KEY = process.env.API_KEY
 
@@ -39,10 +39,13 @@ const getGym = async () => {
         }   
         );
         const gyms = await fetching.json();
+        console.log("api");
+        console.log(API_KEY);
         console.log(gyms['results'][0]);
         //console.log(gyms);
         return gyms['results'];
     }catch(err){
+        console.log("error");
         console.log(err)
     }
 
