@@ -54,10 +54,10 @@ const SeventhPage = ({ profileData, handleChange, nextStep, prevStep }) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={prevStep} style={styles.arrowButton}>
-        <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
+          <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleSubmit} style={styles.arrowButton}>
-        <Icon name="long-arrow-alt-right" style={styles.arrowButtonText} />
+        <TouchableOpacity onPress={handleSubmit} style={styles.arrowButton2}>
+          <Icon name="long-arrow-alt-right" style={styles.arrowButtonText2} />
         </TouchableOpacity>
       </View>
     </View>
@@ -67,62 +67,102 @@ const SeventhPage = ({ profileData, handleChange, nextStep, prevStep }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: "15%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
   },
   headerText: {
     fontSize: 24,
-    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 40,
+    fontWeight: 'bold',
+    color: 'black',
+    fontFamily: 'Avenir',
   },
   optionsContainer: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 40,
+    
   },
   optionButton: {
-    width: "80%",
-    padding: 20,
-    backgroundColor: "#E4DDFF",
-    borderRadius: 10,
+    width: "60%",
+    padding: 15,
+    borderColor: 'white',
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
+    elevation: 4, // For Android
   },
+  
   selectedOptionButton: {
     backgroundColor: "#3A15CE",
+    borderColor: "#3A15CE",
   },
   optionText: {
-    fontSize: 18,
-    textAlign: "center", // Ensure text is centered
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: 'bold',
+    color: 'black', // Unselected text color
+    fontFamily: 'Avenir',
   },
   selectedOptionText: {
-    color: "#fff",
-    fontWeight: "bold",
+    fontFamily: 'Avenir',
+    fontWeight: 'bold',
+    color: 'white'
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "50%",
+    width: "60%",
+    backgroundColor: 'white',
   },
+
+  
+  
   arrowButton: {
-    width: 75,
-    height: 40,
+    width: 80,
+    height: 45,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: "white",
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 10,
+    
+    marginHorizontal: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
+    elevation: 4, // For Android
+  },
+  arrowButton2: {
+    width: 80,
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#3A15CE",
+    borderColor: "#3A15CE",
     borderWidth: 2,
-    borderColor: "#A9A9A9",
-    borderRadius: 5,
+    borderRadius: 10,
     marginHorizontal: 10,
   },
+  arrowButtonText2: {
+    fontSize: 30,
+    color: "white",
+  },
+
   arrowButtonText: {
-    fontSize: 20,
-    color: "#A9A9A9",
+    fontSize: 30,
+    color: "#3A15CE",
   },
 });
 

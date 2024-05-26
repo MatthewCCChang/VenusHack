@@ -42,7 +42,9 @@ export const addPerson = async (
   gymTime,
   howOften,
   phone,
-  instagram,
+  email,
+  // instagram,
+  username,
   interests
 ) => {
   try {
@@ -55,7 +57,7 @@ export const addPerson = async (
       gender: gender.toString(),
       gymTime: gymTime.toString(),
       phone: phone.toString(),
-      instagram: instagram.toString(),
+      // instagram: instagram.toString(),
       interests: Array.isArray(interests)
         ? interests.map((interest) => interest.toString())
         : [interests.toString()],
