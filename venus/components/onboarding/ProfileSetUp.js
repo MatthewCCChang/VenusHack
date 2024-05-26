@@ -33,6 +33,7 @@ const ProfileSetUp = ({navigation}) => {
   const goBack = () => navigation.navigate('SignIn');
 
   console.log(profileData);
+  
 
   const handleSubmit = async () => {
     const {

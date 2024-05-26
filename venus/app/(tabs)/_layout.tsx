@@ -7,6 +7,7 @@ import Start from './Start'; // Ensure the correct import path
 import Home from './Home'; // Ensure the correct import path
 import FirstPage from '../../components/onboarding/fifthPage'
 import LoginPage from './LoginPage.js';
+import Card from './card';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,7 @@ export default function AppNavigator() {
       }}
       initialRouteName="Start"
     >
-      <Stack.Screen name="Start" component={Start} />
+      <Stack.Screen name="Start" component={Card} />
       <Stack.Screen name="SignIn" component={SignInPage} />
       <Stack.Screen name="SignUp" component={ProfileSetUp} />
       <Stack.Screen name="FirstPage" component={FirstPage} />

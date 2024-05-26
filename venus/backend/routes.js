@@ -6,19 +6,29 @@ import {
   setDoc,
   getDoc,
   addDoc,
+  updateDoc,
+  arrayUnion,
   serverTimestamp,
 } from "../app/(tabs)/firebaseConfig";
 
 export const addGym = async (id, name, location, rating) => {
   try {
     const docRef = doc(collection(db, "gyms"), id);
-    await setDoc(docRef, {
-      name: name.toString(),
-      location: location.toString(),
-      // capacity: Number(capacity),
-      rating: Number(rating),
-    });
-    console.log("Gym added with ID: ", docRef.id);
+    const docs = await getDoc(docRef);
+    if (!docs.exists()) {
+      await setDoc(docRef, {
+        name: name.toString(),
+        location: location.toString(),
+        // capacity: Number(capacity),
+        rating: Number(rating),
+      });
+      const docRefCon = doc(collection(db, "connections"), id);
+      await setDoc(docRefCon, {
+        people: [],
+      });
+      console.log("Gym added with ID: ", docRef.id);
+      console.log("Connection added successfully");
+    }
   } catch (error) {
     console.error("Error adding gym: ", error);
   }
@@ -31,11 +41,10 @@ export const addPerson = async (
   gender,
   gymTime,
   howOften,
-  email,
   phone,
+  instagram,
   username,
   interests
-
 ) => {
   try {
     const personData = {
@@ -64,8 +73,9 @@ export const addPerson = async (
 
 export const addConnection = async (personID, gymID) => {
   try {
+    console.log("before adding");
     const gymDocRef = doc(db, "connections", gymID);
-
+    console.log("adding");
     await updateDoc(gymDocRef, {
       people: arrayUnion(personID),
     });
@@ -91,7 +101,7 @@ export const getOneGym = async (gymID) => {
   try {
     const gymRef = doc(db, "gyms", gymID);
     const info = await getDoc(gymRef);
-    console.log(info);
+    console.log(info.data());
     console.log("info above");
     if (info.exists()) {
       return info.data();
@@ -109,14 +119,9 @@ export const getConnections = async (gymID) => {
 
     if (gymDoc.exists()) {
       const gymData = gymDoc.data();
-      const peopleIDs = gymData.people || [];
-
-      const peopleDetailsPromises = peopleIDs.map((personID) =>
-        getPerson(personID)
-      );
-      const peopleDetails = await Promise.all(peopleDetailsPromises);
-
-      return peopleDetails;
+      const peopleIDs = gymData || [];
+      console.log(peopleIDs);
+      return peopleIDs.people;
     } else {
       console.log("No such document!");
       return [];
