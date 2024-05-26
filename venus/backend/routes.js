@@ -6,19 +6,30 @@ import {
   setDoc,
   getDoc,
   addDoc,
+  updateDoc,
+  arrayUnion,
   serverTimestamp,
 } from "../app/(tabs)/firebaseConfig";
 
 export const addGym = async (id, name, location, rating) => {
   try {
     const docRef = doc(collection(db, "gyms"), id);
+    const docs = await getDoc(docRef);
+    if (docs.exists()) {
+      throw error("Gym already exists");
+    }
     await setDoc(docRef, {
       name: name.toString(),
       location: location.toString(),
       // capacity: Number(capacity),
       rating: Number(rating),
     });
+    const docRefCon = doc(collection(db, "connections"), id);
+    await setDoc(docRefCon, {
+      users: [],
+    });
     console.log("Gym added with ID: ", docRef.id);
+    console.log("Connection added successfully");
   } catch (error) {
     console.error("Error adding gym: ", error);
   }
@@ -107,8 +118,8 @@ export const getConnections = async (gymID) => {
 
     if (gymDoc.exists()) {
       const gymData = gymDoc.data();
-      const peopleIDs = gymData.people || [];
-
+      const peopleIDs = gymData || [];
+      console.log(peopleIDs);
       const peopleDetailsPromises = peopleIDs.map((personID) =>
         getPerson(personID)
       );

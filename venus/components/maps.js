@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import MapView, { Marker, Callout, CalloutSubview } from "react-native-maps";
 import { getGym } from "@/app/(tabs)/api";
-import { addGym, getOneGym } from "../backend/routes";
+import {
+  addGym,
+  getOneGym,
+  getConnections,
+  addConnection,
+} from "../backend/routes";
+import Card from "./calloutCard";
 
 const MapScreen = () => {
   const [gyms, setGyms] = useState([]);
@@ -12,35 +18,34 @@ const MapScreen = () => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+  const [gym, setGym] = useState();
+  const [users, setUsers] = useState([]);
+  const [selected, setSelected] = useState();
 
   useEffect(() => {
     async function fetchData() {
+      console.log("useeffect");
       const res = await getGym();
       setGyms(res);
     }
     fetchData();
   }, []);
 
-  // const zoomIn = () => {
-  //   setmapRegion({
-  //     ...mapRegion,
-  //     latitudeDelta: mapRegion.latitudeDelta / 2,
-  //     longitudeDelta: mapRegion.longitudeDelta / 2,
-  //   });
-  // };
-
-  // const zoomOut = () => {
-  //   setmapRegion({
-  //     ...mapRegion,
-  //     latitudeDelta: mapRegion.latitudeDelta * 2,
-  //     longitudeDelta: mapRegion.longitudeDelta * 2,
-  //   });
-  // };
+  const addFakeData = async () => {
+    await addConnection("3A8MznmwGS2YsI8fBSOe", "ChIJqUfeRanf3IARby4I3ZY3oJA");
+    await addConnection("KXY5FpgS1WgfDjACjSG2", "ChIJocWATfHg3IARjVFi4T9CE8k");
+  };
 
   const handlemarkerPress = async (id) => {
+    await addFakeData();
+    setSelected(id);
+    console.log("before gettibg");
     const data = await getOneGym(id);
+    setGym(data);
+    const users = await getConnections(id);
+    setUsers(users);
     console.log("handlig");
-    console.log(data);
+    console.log(users);
     // fetch users associated with gym as well
     return data;
   };
@@ -76,13 +81,16 @@ const MapScreen = () => {
               pinColor="red"
               zIndex={1}
               description={open} //descriptions so like view gym or smth
-              onCalloutPress={(e) => {
+              onSelect={(e) => {
+                //before the callback is shown, after user clicks
                 console.log(e.nativeEvent);
                 handlemarkerPress(id);
                 console.log("done");
                 //callout here to display the cards
               }}
-            />
+            >
+              {selected == id && <Card gym={elem} users={users}></Card>}
+            </Marker>
           );
         })}
       </MapView>
