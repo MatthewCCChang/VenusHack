@@ -2,6 +2,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+
+
 const EigthPage = ({ profileData, handleSubmit, prevStep }) => {
   const validateFields = () => {
     const {
@@ -71,6 +73,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 20,
   },
+  headerText: {
+    fontSize: 24,
+    textAlign: "center",
+    marginBottom: 40,
+    fontWeight: 'bold',
+    color: 'black',
+    fontFamily: 'Avenir',
+  },
   logoContainer: {
     width: 200,
     height: 200,
@@ -78,47 +88,67 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#e0e0e0",
     marginBottom: 40,
+    
   },
   logoText: {
     fontSize: 24,
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 40,
-  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "75%",
+    width: "60%",
   },
   submitButton: {
-    width: "35%",
-    padding: 12,
-    backgroundColor: "transparent",
-    borderWidth: 2,
-    borderColor: "#A9A9A9",
-    borderRadius: 5,
-    alignItems: "center",
+    width: 80,
+    height: 45,
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#3A15CE",
+    borderColor: "#3A15CE",
+    borderWidth: 2,
+    borderRadius: 10,
+    marginHorizontal: 10,
   },
   submitButtonText: {
-    fontSize: 18,
-    color: "#A9A9A9",
+    fontWeight: 'bold',
+      color: 'white',
   },
   arrowButton: {
-    width: "35%",
+    width: 80,
+    height: 45,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent",
-    borderWidth: 2,
-    borderColor: "#A9A9A9",
-    borderRadius: 5,
+    backgroundColor: "white",
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 10,
+    
+    marginHorizontal: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
+    elevation: 4, // For Android
   },
+  arrowButton2: {
+    width: 80,
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#3A15CE",
+    borderColor: "#3A15CE",
+    borderWidth: 2,
+    borderRadius: 10,
+    marginHorizontal: 10,
+  },
+  arrowButtonText2: {
+    fontSize: 30,
+    color: "white",
+  },
+
   arrowButtonText: {
-    fontSize: 24,
-    color: "#A9A9A9",
+    fontSize: 30,
+    color: "#3A15CE",
+    
   },
 });
 

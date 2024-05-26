@@ -12,7 +12,7 @@ const FirstPage = ({ goBack, profileData, handleChange, nextStep, prevStep }) =>
 
       <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack} style={styles.arrowButton}>
-        <Icon name="long-arrow-alt-left" style={styles.arrowButtonText} />
+        <Text>Back</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={nextStep} style={styles.arrowButton}>
         <Icon name="long-arrow-alt-right" style={styles.arrowButtonText} />

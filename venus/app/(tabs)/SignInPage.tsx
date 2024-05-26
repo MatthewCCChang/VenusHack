@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from "react
 import '@tamagui/core/reset.css';
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
 const SignInPage = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -19,7 +20,7 @@ const SignInPage = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('LogIn')} style={styles.loginButton}>
+            <TouchableOpacity onPress={() => navigation.navigate('LoginPage')} style={styles.loginButton}>
               <Text style={styles.loginButtonText}>Log in</Text>
             </TouchableOpacity>
           </View>
@@ -57,38 +58,41 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
     marginBottom: 40,
+    
   },
   buttonContainer: {
-    width: '100%',
+    width: '70%',
     alignItems: 'center',
     marginBottom: 20,
   },
   signupButton: {
-    marginTop: '30%',
-    backgroundColor: '#4B0082',
+    marginTop: '40%',
+    backgroundColor: '#3A15CE',
     borderRadius: 15,
-    paddingVertical: 15,
+    paddingVertical: 13,
     paddingHorizontal: 30,
     width: '80%',
+    
     alignItems: 'center',
   },
   signupButtonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Avenir',
   },
   loginButton: {
-    backgroundColor: 'white',
+    backgroundColor: '#EDE9FF',
     borderWidth: 1,
     borderColor: '#4B0082',
     borderRadius: 15,
-    paddingVertical: 15,
+    paddingVertical: 13,
     paddingHorizontal: 30,
     width: '80%',
     alignItems: 'center',
   },
   loginButtonText: {
-    color: '#4B0082',
+    color: '#3A15CE',
     fontSize: 18,
     fontWeight: 'bold',
   },

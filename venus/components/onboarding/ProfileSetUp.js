@@ -32,6 +32,8 @@ const ProfileSetUp = ({navigation}) => {
 
   const goBack = () => navigation.navigate('SignIn');
 
+  console.log(profileData);
+
   const handleSubmit = async () => {
     const {
       firstName,
@@ -62,12 +64,13 @@ const ProfileSetUp = ({navigation}) => {
         fitnessGoals,
       );
       console.log("User created and data added successfully");
+      navigation.navigate('Home');
     } catch (err) {
       console.log(err);
     }
   };
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   const nextStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -94,7 +97,7 @@ const ProfileSetUp = ({navigation}) => {
       profileData={profileData}
       handleChange={handleChange}
       nextStep={nextStep}
-      prevStep={prevStep}
+      prevStep={goBack}
     />,
     <ThirdPage
       key={2}
