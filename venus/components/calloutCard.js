@@ -5,10 +5,12 @@ import userCard from "./userCard";
 
 const Card = (gym, users) => {
   const photos = gym.photos;
-
+  console.log("users");
+  console.log(users);
   return (
-    <Callout tooltip={true}>
-      {/*gym info then user cards */}
+    // <Callout tooltip={true}>
+    //   {/*gym info then user cards */}
+    <View>
       <ScrollView horizontal={true}>
         {photos.map((photo, index) => {
           <Image
@@ -20,7 +22,9 @@ const Card = (gym, users) => {
         })}
       </ScrollView>
       <userCard></userCard>
-    </Callout>
+    </View>
+
+    // </Callout>
   );
 };
 export default Card;

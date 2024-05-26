@@ -24,12 +24,11 @@ export const addGym = async (id, name, location, rating) => {
       });
       const docRefCon = doc(collection(db, "connections"), id);
       await setDoc(docRefCon, {
-        users: [],
+        people: [],
       });
       console.log("Gym added with ID: ", docRef.id);
       console.log("Connection added successfully");
     }
-    
   } catch (error) {
     console.error("Error adding gym: ", error);
   }
@@ -73,8 +72,9 @@ export const addPerson = async (
 
 export const addConnection = async (personID, gymID) => {
   try {
+    console.log("before adding");
     const gymDocRef = doc(db, "connections", gymID);
-
+    console.log("adding");
     await updateDoc(gymDocRef, {
       people: arrayUnion(personID),
     });
@@ -100,7 +100,7 @@ export const getOneGym = async (gymID) => {
   try {
     const gymRef = doc(db, "gyms", gymID);
     const info = await getDoc(gymRef);
-    console.log(info);
+    console.log(info.data());
     console.log("info above");
     if (info.exists()) {
       return info.data();
@@ -120,12 +120,7 @@ export const getConnections = async (gymID) => {
       const gymData = gymDoc.data();
       const peopleIDs = gymData || [];
       console.log(peopleIDs);
-      const peopleDetailsPromises = peopleIDs.map((personID) =>
-        getPerson(personID)
-      );
-      const peopleDetails = await Promise.all(peopleDetailsPromises);
-
-      return peopleDetails;
+      return peopleIDs.people;
     } else {
       console.log("No such document!");
       return [];
