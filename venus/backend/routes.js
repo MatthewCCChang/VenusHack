@@ -42,7 +42,8 @@ export const addPerson = async (
   gymTime,
   howOften,
   phone,
-  instagram,
+  email,
+  // instagram,
   username,
   interests
 ) => {

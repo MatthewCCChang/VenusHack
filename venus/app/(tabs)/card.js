@@ -12,7 +12,7 @@ const Card = ({ id }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const person = await getPerson('KXY5FpgS1WgfDjACjSG2');
+        const person = await getPerson('3A8MznmwGS2YsI8fBSOe');
         setName(`${person.firstName} ${person.lastName}`);
         setAge(person.age);
         setInterests(person.interests || []);

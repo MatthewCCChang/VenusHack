@@ -20,7 +20,7 @@ export default function AppNavigator() {
       }}
       initialRouteName="Start"
     >
-      <Stack.Screen name="Start" component={Card} />
+      <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="SignIn" component={SignInPage} />
       <Stack.Screen name="SignUp" component={ProfileSetUp} />
       <Stack.Screen name="FirstPage" component={FirstPage} />
