@@ -19,17 +19,15 @@ export default function AppNavigator() {
         headerShown: false, // This ensures no headers are shown
         animationEnabled: false, // Disable transitions between screens
       }}
-      initialRouteName="Map" //change back later
+      initialRouteName="Start" //change back later
     >
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="SignIn" component={SignInPage} />
       <Stack.Screen name="SignUp" component={ProfileSetUp} />
       <Stack.Screen name="FirstPage" component={FirstPage} />
-      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="Map" component={Map}/>
+      <Stack.Screen name="Home" component={Map}/>
       </Stack.Navigator>
       
-    </Stack.Navigator>
   );
 }
